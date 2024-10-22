@@ -9,7 +9,8 @@ import Card from './components/Card';
 import Spinner from './components/Spinner';
 
 
-function App() {
+
+const App =  () => {
 
   const [courses , setCourses] = useState(null);
   const [loading , setloading ] = useState(true);
@@ -18,9 +19,9 @@ function App() {
     setloading(true);
     try{
       let response = await fetch(apiUrl);
-      let output = response.json();
+      let output = await response.json();
       //output aayega fetch data ka 
-      setCourses(output);
+      setCourses(output.data);
     }
     catch(error){
       toast.error("Failed to fetch data");
@@ -32,9 +33,8 @@ function App() {
     fetchData();
   }, []);
 
-
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
 
       <div>
       <Navbar />
@@ -48,7 +48,7 @@ function App() {
 
       <div>
       {
-        loading ? ( <Spinner/> ) : ( <Cards/> )
+        loading ? ( <Spinner/> ) : ( <Cards courses={courses}/> )
       }
       </div>
       

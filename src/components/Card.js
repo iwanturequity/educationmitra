@@ -1,7 +1,8 @@
 import React from 'react';
-import { fcLike } from "react-icons/fa";
+import { FcLike } from "react-icons/fc";
 
-const Card = ({course}) => {
+const Card = (props) => {
+    let course = props.course;
   return (
     <div>
         <div>
@@ -9,7 +10,7 @@ const Card = ({course}) => {
 
             <div>
                 <button>
-                    <fcLike fontSize="1.75rem"/>
+                    <FcLike />
                 </button>
             </div>
         </div>
