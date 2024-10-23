@@ -14,6 +14,7 @@ const App =  () => {
 
   const [courses , setCourses] = useState(null);
   const [loading , setloading ] = useState(true);
+  const [categories , setCategory] = useState(filterData[0].title);
   
   async function fetchData(){
     setloading(true);
@@ -40,16 +41,21 @@ const App =  () => {
       <Navbar />
       </div>
 
-      <div>
-      <Filter 
-      filterData={filterData}
-      />
-      </div>
+      <div className="">
 
-      <div className=' w-11/12 max-w-[1200px] mx-auto flex flex-wrap justify-center items-center min-h-[50vh] '>
-      {
-        loading ? ( <Spinner/> ) : ( <Cards courses={courses}/> )
-      }
+        <div>
+        <Filter 
+        filterData={filterData}
+        categories={categories}
+        setCategory={setCategory}
+        />
+        </div>
+
+        <div className=' w-11/12 max-w-[1200px] mx-auto flex flex-wrap justify-center items-center min-h-[50vh] '>
+        {
+          loading ? ( <Spinner/> ) : ( <Cards courses={courses} categories={categories}/> )
+        }
+        </div>
       </div>
       
     </div>
